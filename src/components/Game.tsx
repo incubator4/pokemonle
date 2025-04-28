@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { SearchBar } from "../compoents/SearchBar";
+import { SearchBar } from "./SearchBar";
 import { Button, addToast } from "@heroui/react";
 import GameCard from "./GameCard";
 import { GameInit, GameGuess } from "../api/game";
 import { useEncodeGeneration } from "../hooks/useGeneration";
+import pokeball from "../assets/pokeball.svg";
 
 export const Game = () => {
   const [selectedPokemon, setSelectedPokemon] = useState<string | undefined>(
@@ -42,18 +43,21 @@ export const Game = () => {
   return (
     <>
       <div className="flex flex-col items-center m-4">
-        <SearchBar
-          key={searchBarKey}
-          value={selectedPokemon}
-          onChange={handleSearchChange}
-        />
+        <div className="w-full mb-8">
+          <SearchBar
+            key={searchBarKey}
+            value={selectedPokemon}
+            onChange={handleSearchChange}
+          />
+        </div>
+
         <div
           id="button-group"
-          className="flex w-full mt-6 space-x-3 justify-center"
+          className="flex w-full mx-auto justify-center space-x-4 mb-8"
         >
           <Button
             color="primary"
-            className="w-32"
+            className="w-32 h-12 pixel-button pixel-button-primary pixel-corners pokemon-font"
             isDisabled={!selectedPokemon || isFinished}
             onPress={() => {
               if (answer && selectedPokemon) {
@@ -75,12 +79,15 @@ export const Game = () => {
               }
             }}
           >
-            提交
+            <div className="flex items-center justify-center">
+              <img src={pokeball} alt="Pokeball" className="w-5 h-5 mr-2" />
+              提交
+            </div>
           </Button>
           <Button
             isDisabled={isFinished}
             color="danger"
-            className="w-32"
+            className="w-32 h-12 pixel-button pixel-button-danger pixel-corners pokemon-font"
             onPress={() => {
               if (answer) {
                 GameGuess(answer, answer).then((res) => {
@@ -102,13 +109,21 @@ export const Game = () => {
           >
             投降
           </Button>
-          <Button color="success" onPress={handleRestart} className="w-32">
+          <Button
+            color="success"
+            onPress={handleRestart}
+            className="w-32 h-12 pixel-button pixel-button-success pixel-corners pokemon-font"
+          >
             重开
           </Button>
         </div>
-        <div className="flex w-full mt-6 space-x-3 justify-center">
-          <GameCard items={compareList} />
-        </div>
+
+        {compareList.length > 0 && (
+          <div className="w-full pokemon-table-container">
+            <div className="pixel-divider mb-4"></div>
+            <GameCard items={compareList} />
+          </div>
+        )}
       </div>
     </>
   );

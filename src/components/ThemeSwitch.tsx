@@ -1,5 +1,7 @@
 import { useTheme } from "@heroui/use-theme";
 import { Switch } from "@heroui/react";
+import { useEffect } from "react";
+
 export const MoonIcon = () => {
   return (
     <svg
@@ -33,11 +35,30 @@ export const SunIcon = () => {
     </svg>
   );
 };
+
 export const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();
 
+  // Apply theme changes immediately
+  useEffect(() => {
+    // Apply the Pokemon theme class to the body based on current theme
+    document.body.classList.remove("light-theme", "dark-theme");
+    document.body.classList.add(theme === "dark" ? "dark-theme" : "light-theme");
+
+    // Apply theme to document element for Tailwind dark mode support
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(theme);
+
+    // Force a repaint to ensure all styles are applied
+    const root = document.documentElement;
+    root.style.display = 'none';
+    // This causes a reflow, forcing the browser to apply the new styles
+    void root.offsetHeight;
+    root.style.display = '';
+  }, [theme]);
+
   return (
-    <div>
+    <div className="pixel-border pixel-shadow p-1 h-10 flex items-center justify-center">
       <Switch
         isSelected={theme === "dark"}
         onValueChange={(e) => {
@@ -45,6 +66,7 @@ export const ThemeSwitcher = () => {
         }}
         size="lg"
         thumbIcon={theme === "dark" ? <MoonIcon /> : <SunIcon />}
+        className="pokemon-font"
       />
     </div>
   );

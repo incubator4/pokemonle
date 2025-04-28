@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(2, 2)" fill-rule="nonzero">
+            <!-- Outer circle -->
+            <circle cx="10" cy="10" r="10" fill="#000000" />
+
+            <!-- Inner white circle -->
+            <circle cx="10" cy="10" r="9" fill="#FFFFFF" />
+
+            <!-- Red top half -->
+            <path d="M10,1 C14.9705627,1 19,5.02943725 19,10 L1,10 C1,5.02943725 5.02943725,1 10,1 Z" fill="#FF0000" />
+
+            <!-- Middle line -->
+            <rect x="1" y="9" width="18" height="2" fill="#000000" />
+
+            <!-- Center button outer -->
+            <circle cx="10" cy="10" r="3.5" fill="#000000" />
+
+            <!-- Center button inner -->
+            <circle cx="10" cy="10" r="2.5" fill="#FFFFFF" />
+        </g>
+    </g>
+</svg>

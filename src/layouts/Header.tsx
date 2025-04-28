@@ -1,5 +1,6 @@
-import { SettingModal } from "../compoents/SettingModal";
-import { ThemeSwitcher } from "../compoents/ThemeSwitch";
+import { SettingModal } from "../components/SettingModal";
+import { ThemeSwitcher } from "../components/ThemeSwitch";
+import pokeball from "../assets/pokeball.svg";
 
 interface HeaderProps {
   title: string;
@@ -8,15 +9,18 @@ interface HeaderProps {
 
 export const Header = (props: HeaderProps) => {
   return (
-    <header>
-      <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
-        <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-          <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-            {props.title}
-          </span>
+    <header className="header-container">
+      <nav className="px-4 lg:px-6 py-4 pixel-border pixel-shadow">
+        <div className="flex flex-wrap justify-between items-center mx-auto max-w-3xl">
+          <div className="flex items-center space-x-2">
+            <img src={pokeball} alt="Pokeball" className="w-8 h-8" />
+            <span className="self-center text-xl font-bold whitespace-nowrap pokemon-font">
+              {props.title}
+            </span>
+          </div>
 
           <div className="flex items-center lg:order-2">
-            <div className="flex space-x-3">
+            <div className="flex items-center space-x-3">
               <ThemeSwitcher />
               <SettingModal />
             </div>

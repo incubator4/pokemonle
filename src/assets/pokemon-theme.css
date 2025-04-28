@@ -1,0 +1,999 @@
+/* Pokemon Pixel Art Theme */
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+:root {
+  /* Light theme colors */
+  --pokemon-red: #ff0000;
+  --pokemon-blue: #0000ff;
+  --pokemon-yellow: #ffde00;
+  --pokemon-green: #00a650;
+  --pokemon-light-bg: #f0f0f0;
+  --pokemon-light-container: #ffffff;
+  --pokemon-light-border: #d0d0d0;
+  --pokemon-light-text: #333333;
+  --pokemon-light-card: #ffffff;
+  --pokemon-light-highlight: #edf2f7;
+  --pokemon-light-primary: #3e75c3;
+  --pokemon-light-secondary: #e54222;
+  --pokemon-light-success: #4caf50;
+  --pokemon-light-danger: #f44336;
+  --pokemon-light-warning: #ff9800;
+
+  /* Dark theme colors */
+  --pokemon-dark-bg: #121212;
+  --pokemon-dark-container: #1e1e1e;
+  --pokemon-dark-border: #3a3f5e;
+  --pokemon-dark-text: #e0e0e0;
+  --pokemon-dark-card: #1a1a1a;
+  --pokemon-dark-secondary-card: #0f0f0f;
+  --pokemon-dark-highlight: #2a2a2a;
+  --pokemon-dark-primary: #5e92f3;
+  --pokemon-dark-secondary: #ff6b6b;
+  --pokemon-dark-success: #66bb6a;
+  --pokemon-dark-danger: #f44336;
+  --pokemon-dark-warning: #ffb74d;
+
+  /* Pixel sizes */
+  --pixel-size: 2px;
+}
+
+/* Base Pixel Art Styling */
+.pixel-corners {
+  clip-path: polygon(
+    0% var(--pixel-size),
+    var(--pixel-size) 0%,
+    calc(100% - var(--pixel-size)) 0%,
+    100% var(--pixel-size),
+    100% calc(100% - var(--pixel-size)),
+    calc(100% - var(--pixel-size)) 100%,
+    var(--pixel-size) 100%,
+    0% calc(100% - var(--pixel-size))
+  );
+}
+
+.pixel-border {
+  border-style: solid;
+  border-width: var(--pixel-size);
+  image-rendering: pixelated;
+}
+
+.pixel-border-bottom {
+  border-bottom-style: solid;
+  border-bottom-width: var(--pixel-size);
+}
+
+.pixel-shadow {
+  box-shadow: var(--pixel-size) var(--pixel-size) 0 0 rgba(0, 0, 0, 0.5),
+    calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 2) 0 0
+      rgba(0, 0, 0, 0.3);
+}
+
+/* Pokemon Font */
+.pokemon-font {
+  font-family: "Press Start 2P", cursive;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+}
+
+/* Pixel Button */
+.pixel-button {
+  position: relative;
+  padding: 8px 16px !important;
+  transition: all 0.1s ease;
+  transform: translateY(0);
+  font-family: "Press Start 2P", cursive !important;
+  font-size: 0.7rem !important;
+  letter-spacing: 0.05em;
+  border-width: var(--pixel-size) !important;
+  border-style: solid !important;
+}
+
+.pixel-button:active {
+  transform: translateY(var(--pixel-size));
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+}
+
+/* App Container */
+.app-container {
+  min-height: 100vh;
+  transition: background-color 0.3s ease;
+}
+
+/* Light Theme Styling */
+.light-theme {
+  background-color: var(--pokemon-light-bg);
+  color: var(--pokemon-light-text);
+}
+
+.light-theme .app-container {
+  background-color: var(--pokemon-light-bg);
+}
+
+.light-theme .header-container {
+  background-color: var(--pokemon-light-container);
+  border-color: var(--pokemon-light-border);
+}
+
+.light-theme .pixel-card {
+  background-color: var(--pokemon-light-card);
+  border-color: var(--pokemon-light-border);
+}
+
+.light-theme .pokemon-input,
+.light-theme .pokemon-input-wrapper {
+  background-color: var(--pokemon-light-card) !important;
+  border-color: var(--pokemon-light-border) !important;
+  color: var(--pokemon-light-text) !important;
+}
+
+.light-theme .pixel-border-bottom {
+  border-bottom-color: var(--pokemon-light-border);
+}
+
+.light-theme .pixel-button-primary {
+  background-color: var(--pokemon-light-primary);
+  border-color: #1e3a61 !important;
+  color: white;
+}
+
+.light-theme .pixel-button-secondary {
+  background-color: var(--pokemon-light-secondary);
+  border-color: #a32111 !important;
+  color: white;
+}
+
+.light-theme .pixel-button-success {
+  background-color: var(--pokemon-light-success);
+  border-color: #2e7d32 !important;
+  color: white;
+}
+
+.light-theme .pixel-button-danger {
+  background-color: var(--pokemon-light-danger);
+  border-color: #d32f2f !important;
+  color: white;
+}
+
+/* Dark Theme Styling */
+.dark-theme {
+  background-color: var(--pokemon-dark-bg);
+  color: var(--pokemon-dark-text);
+}
+
+.dark-theme .app-container {
+  background-color: var(--pokemon-dark-bg);
+}
+
+.dark-theme .header-container {
+  background-color: var(--pokemon-dark-container);
+  border-color: var(--pokemon-dark-border);
+}
+
+.dark-theme .pixel-card {
+  background-color: var(--pokemon-dark-card);
+  border-color: var(--pokemon-dark-border);
+}
+
+.dark-theme .pokemon-table {
+  background-color: var(--pokemon-dark-secondary-card);
+}
+
+.dark-theme .pokemon-input,
+.dark-theme .pokemon-input-wrapper {
+  background-color: var(--pokemon-dark-container) !important;
+  border-color: var(--pokemon-dark-border) !important;
+  color: var(--pokemon-dark-text) !important;
+}
+
+.dark-theme .pixel-border-bottom {
+  border-bottom-color: var(--pokemon-dark-border);
+}
+
+.dark-theme .pixel-button-primary {
+  background-color: var(--pokemon-dark-primary);
+  border-color: #2e4675 !important;
+  color: white;
+}
+
+.dark-theme .pixel-button-secondary {
+  background-color: var(--pokemon-dark-secondary);
+  border-color: #c73535 !important;
+  color: white;
+}
+
+.dark-theme .pixel-button-success {
+  background-color: var(--pokemon-dark-success);
+  border-color: #388e3c !important;
+  color: white;
+}
+
+.dark-theme .pixel-button-danger {
+  background-color: var(--pokemon-dark-danger);
+  border-color: #c62828 !important;
+  color: white;
+}
+
+/* Comprehensive dark mode overrides for NextUI components */
+.dark-theme {
+  /* All overlay elements */
+  --overlay-background: var(--pokemon-dark-container) !important;
+
+  /* All dropdown elements */
+  --dropdown-background: var(--pokemon-dark-card) !important;
+  --dropdown-item-hover: var(--pokemon-dark-highlight) !important;
+}
+
+/* Ensure modal and popup backgrounds are dark */
+.dark-theme [role="dialog"],
+.dark-theme [role="alertdialog"],
+.dark-theme [role="tooltip"],
+.dark-theme [role="menu"],
+.dark-theme [data-overlay="true"],
+.dark-theme [data-slot="base"] {
+  background-color: var(--pokemon-dark-card) !important;
+  color: var(--pokemon-dark-text) !important;
+  border-color: var(--pokemon-dark-border) !important;
+}
+
+/* Fix dropdown and select elements */
+.dark-theme [data-slot="popoverContent"],
+.dark-theme [data-slot="menu"],
+.dark-theme [data-slot="trigger"],
+.dark-theme [role="listbox"],
+.dark-theme [role="combobox"] {
+  background-color: var(--pokemon-dark-card) !important;
+  color: var(--pokemon-dark-text) !important;
+  border-color: var(--pokemon-dark-border) !important;
+}
+
+/* Fix form elements */
+.dark-theme input,
+.dark-theme select,
+.dark-theme textarea,
+.dark-theme button {
+  background-color: var(--pokemon-dark-container) !important;
+  color: var(--pokemon-dark-text) !important;
+  border-color: var(--pokemon-dark-border) !important;
+}
+
+/* Fix settings modal */
+.dark-theme .settings-modal,
+.dark-theme .settings-modal-content,
+.dark-theme .settings-modal-header,
+.dark-theme .settings-modal-body,
+.dark-theme .settings-modal-footer {
+  background-color: var(--pokemon-dark-card) !important;
+  color: var(--pokemon-dark-text) !important;
+}
+
+/* Fix NextUI modals specifically */
+.dark-theme .nextui-modal,
+.dark-theme .nextui-modal-content,
+.dark-theme .nextui-c-iDzHSK,
+.dark-theme .nextui-c-iDzHSK-bzQgLD-variant-default {
+  background-color: var(--pokemon-dark-card) !important;
+  color: var(--pokemon-dark-text) !important;
+}
+
+/* Any element with NextUI classes that might have a white background */
+.dark-theme [class*="nextui-c-"] {
+  background-color: transparent !important;
+}
+
+.dark-theme .nextui-c-iDzHSK,
+.dark-theme .nextui-c-egxOLa,
+.dark-theme .nextui-c-hzQjrs,
+.dark-theme .nextui-c-PJLV,
+.dark-theme .nextui-c-hBBsNH,
+.dark-theme .nextui-c-fdHeMm,
+.dark-theme .nextui-c-iwmZdB,
+.dark-theme .nextui-c-dwxLNB {
+  background-color: var(--pokemon-dark-card) !important;
+  color: var(--pokemon-dark-text) !important;
+  border-color: var(--pokemon-dark-border) !important;
+}
+
+/* All dropdown items */
+.dark-theme div[role="option"],
+.dark-theme [data-slot="item"],
+.dark-theme .nextui-c-ceJkTM {
+  background-color: var(--pokemon-dark-card) !important;
+  color: var(--pokemon-dark-text) !important;
+}
+
+.dark-theme div[role="option"]:hover,
+.dark-theme [data-slot="item"]:hover,
+.dark-theme .nextui-c-ceJkTM:hover {
+  background-color: var(--pokemon-dark-highlight) !important;
+}
+
+/* Fix autocomplete popup */
+.dark-theme .nextui-c-hpzxck,
+.dark-theme [data-slot="listbox"] {
+  background-color: var(--pokemon-dark-card) !important;
+  border-color: var(--pokemon-dark-border) !important;
+}
+
+/* Fix all labels */
+.dark-theme label,
+.dark-theme [data-slot="label"] {
+  color: var(--pokemon-dark-text) !important;
+}
+
+/* Ensure proper styling for scrollbars in dark mode */
+.dark-theme ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dark-theme ::-webkit-scrollbar-track {
+  background: var(--pokemon-dark-bg);
+}
+
+.dark-theme ::-webkit-scrollbar-thumb {
+  background: var(--pokemon-dark-border);
+  border-radius: 4px;
+}
+
+.dark-theme ::-webkit-scrollbar-thumb:hover {
+  background: var(--pokemon-dark-highlight);
+}
+
+/* Fix any remaining light backgrounds */
+.dark-theme *[style*="background-color: white"],
+.dark-theme *[style*="background-color: #fff"],
+.dark-theme *[style*="background-color: rgb(255, 255, 255)"],
+.dark-theme *[style*="background: white"],
+.dark-theme *[style*="background: #fff"],
+.dark-theme *[style*="background: rgb(255, 255, 255)"] {
+  background-color: var(--pokemon-dark-card) !important;
+}
+
+/* Fix any remaining light text */
+.dark-theme *[style*="color: black"],
+.dark-theme *[style*="color: #000"],
+.dark-theme *[style*="color: rgb(0, 0, 0)"] {
+  color: var(--pokemon-dark-text) !important;
+}
+
+/* Pokemon Animations */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pokemon-blink {
+  animation: blink 1s infinite;
+}
+
+/* Pokemon Table */
+.pokemon-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.pokemon-table th,
+.pokemon-table td {
+  border: var(--pixel-size) solid;
+  padding: 8px;
+}
+
+.light-theme .pokemon-table th,
+.light-theme .pokemon-table td {
+  border-color: var(--pokemon-light-border);
+}
+
+.dark-theme .pokemon-table th,
+.dark-theme .pokemon-table td {
+  border-color: var(--pokemon-dark-border);
+  color: white !important;
+}
+
+/* Pokemon user name text in dark mode */
+.dark-theme .pokemon-table p {
+  color: white !important;
+}
+
+/* Pokemon chip text in dark mode */
+.dark-theme .pokemon-table .chip-content {
+  color: white !important;
+}
+
+/* Pokemon Form Controls */
+.pokemon-input {
+  border: var(--pixel-size) solid !important;
+  padding: 12px 16px !important;
+  background-color: transparent;
+  font-family: "Press Start 2P", cursive !important;
+  font-size: 0.7rem !important;
+}
+
+.light-theme .pokemon-input {
+  border-color: var(--pokemon-light-border) !important;
+  color: var(--pokemon-light-text) !important;
+}
+
+.dark-theme .pokemon-input {
+  border-color: var(--pokemon-dark-border) !important;
+  color: var(--pokemon-dark-text) !important;
+}
+
+/* Pokemon Autocomplete */
+.autocomplete-item {
+  font-family: "Press Start 2P", cursive !important;
+  font-size: 0.7rem !important;
+  padding: 8px !important;
+}
+
+.light-theme .autocomplete-item {
+  background-color: var(--pokemon-light-card);
+  color: var(--pokemon-light-text);
+}
+
+.light-theme .autocomplete-item:hover {
+  background-color: var(--pokemon-light-highlight);
+}
+
+.dark-theme .autocomplete-item {
+  background-color: var(--pokemon-dark-card);
+  color: var(--pokemon-dark-text);
+}
+
+.dark-theme .autocomplete-item:hover {
+  background-color: var(--pokemon-dark-highlight);
+}
+
+/* Fix for Autocomplete dropdown behavior */
+.pokemon-input-wrapper input:focus:not(:placeholder-shown) + [role="listbox"] {
+  display: block !important;
+}
+
+.pokemon-input-wrapper input:focus:placeholder-shown + [role="listbox"] {
+  display: none !important;
+}
+
+/* Prevent auto-selection of first item in dropdown - aggressive approach */
+.pokemon-input-wrapper [role="option"] {
+  background-color: transparent !important;
+}
+
+.pokemon-input-wrapper [role="option"][aria-selected="true"] {
+  background-color: transparent !important;
+}
+
+.pokemon-input-wrapper [role="option"]:first-child {
+  background-color: transparent !important;
+}
+
+.pokemon-input-wrapper [role="option"]:hover {
+  background-color: var(--pokemon-light-highlight) !important;
+}
+
+.dark-theme .pokemon-input-wrapper [role="option"]:hover {
+  background-color: var(--pokemon-dark-highlight) !important;
+}
+
+/* Re-enable background color only when actually selecting an item */
+.pokemon-input-wrapper [role="option"]:active {
+  background-color: var(--pokemon-light-primary) !important;
+}
+
+.dark-theme .pokemon-input-wrapper [role="option"]:active {
+  background-color: var(--pokemon-dark-primary) !important;
+}
+
+/* Pokemon Modal */
+.pokemon-modal {
+  border: calc(var(--pixel-size) * 2) solid;
+}
+
+.light-theme .pokemon-modal {
+  background-color: var(--pokemon-light-card);
+  border-color: var(--pokemon-light-primary);
+}
+
+.dark-theme .pokemon-modal {
+  background-color: var(--pokemon-dark-card) !important;
+  border-color: var(--pokemon-dark-primary);
+  color: var(--pokemon-dark-text) !important;
+}
+
+/* Ensure modal content is properly themed in dark mode */
+.dark-theme [data-slot="content"],
+.dark-theme [data-slot="base"],
+.dark-theme [data-slot="backdrop"] {
+  background-color: var(--pokemon-dark-card) !important;
+  color: var(--pokemon-dark-text) !important;
+}
+
+.dark-theme [data-slot="header"],
+.dark-theme [data-slot="body"],
+.dark-theme [data-slot="footer"] {
+  background-color: var(--pokemon-dark-card) !important;
+  color: var(--pokemon-dark-text) !important;
+}
+
+/* Ensure text and interactive elements in modals have proper contrast */
+.dark-theme [data-slot="content"] p,
+.dark-theme [data-slot="content"] span,
+.dark-theme [data-slot="content"] div,
+.dark-theme [data-slot="content"] h1,
+.dark-theme [data-slot="content"] h2,
+.dark-theme [data-slot="content"] h3,
+.dark-theme [data-slot="content"] h4,
+.dark-theme [data-slot="content"] h5,
+.dark-theme [data-slot="content"] h6 {
+  color: var(--pokemon-dark-text) !important;
+}
+
+/* Dark mode settings specific styling */
+.dark-theme .nextui-c-gpbAMl {
+  color: white !important;
+}
+
+.dark-theme .nextui-c-cEPCre {
+  color: white !important;
+}
+
+.dark-theme label.nextui-c-dPkmBR {
+  color: white !important;
+}
+
+/* Pokeball Styling */
+.pokeball {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(
+    to bottom,
+    #ff0000 0%,
+    #ff0000 50%,
+    white 50%,
+    white 100%
+  );
+  border-radius: 50%;
+  border: 2px solid #333;
+  overflow: hidden;
+}
+
+.pokeball::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  border: 2px solid #333;
+  z-index: 2;
+}
+
+/* Pokeball Button Styling */
+.pokeball-button {
+  position: relative;
+  background: transparent !important;
+  border: none !important;
+  overflow: visible !important;
+  z-index: 1;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.pokeball-button svg {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  transition: all 0.2s ease;
+}
+
+.pokeball-button:hover svg {
+  transform: scale(1.1);
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
+}
+
+.pokeball-button:active svg {
+  transform: scale(0.95);
+}
+
+.pokeball-button:hover {
+  animation: pokeball-shake 0.8s ease-in-out;
+}
+
+.pokeball-button:active {
+  animation: pokeball-click 0.2s ease-in-out;
+}
+
+@keyframes pokeball-shake {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-10deg);
+  }
+  40% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(-5deg);
+  }
+  80% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes pokeball-click {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Dark theme adaptations for great ball button */
+.dark-theme .pokeball-button svg circle:first-of-type {
+  stroke: #666 !important;
+}
+
+/* General Enhancements */
+.pixel-divider {
+  height: var(--pixel-size);
+  margin: 12px 0;
+}
+
+.light-theme .pixel-divider {
+  background-color: var(--pokemon-light-border);
+}
+
+.dark-theme .pixel-divider {
+  background-color: var(--pokemon-dark-border);
+}
+
+/* Autocomplete overrides */
+.pokemon-input-wrapper {
+  --nextui-default-theme-focus-ring: none !important;
+}
+
+.pokemon-input-wrapper:focus-within {
+  outline: none !important;
+  box-shadow: 0 0 0 1px var(--pokemon-yellow) !important;
+}
+
+/* Ensure all text is consistent */
+input,
+button,
+div,
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Press Start 2P", cursive;
+}
+
+/* Fix input placeholder */
+.pokemon-input::placeholder {
+  font-family: "Press Start 2P", cursive !important;
+  font-size: 0.7rem !important;
+  opacity: 0.7;
+}
+
+/* Fix autocomplete component in dark mode */
+.dark-theme [data-slot="base"] label {
+  color: white !important;
+}
+
+.dark-theme [data-slot="listbox"] {
+  background-color: var(--pokemon-dark-card) !important;
+  color: white !important;
+}
+
+.dark-theme [data-slot="popoverContent"] {
+  background-color: var(--pokemon-dark-card) !important;
+}
+
+.dark-theme [data-slot="input"] {
+  color: white !important;
+  background-color: var(--pokemon-dark-container) !important;
+}
+
+/* General overrides for all NextUI components in dark mode */
+.dark-theme [data-slot] {
+  --nextui-default-theme-background: var(--pokemon-dark-container) !important;
+  --nextui-default-theme-text: white !important;
+}
+
+.dark-theme .nextui-c-fdHeMm-ihsTKkG-css {
+  background-color: var(--pokemon-dark-container) !important;
+}
+
+.dark-theme .nextui-c-iwmZdB {
+  background-color: var(--pokemon-dark-container) !important;
+}
+
+.dark-theme .nextui-c-dwxLNB-ivIKbD-css {
+  background-color: var(--pokemon-dark-container) !important;
+}
+
+/* Fix search dropdown in dark mode */
+.dark-theme div[role="listbox"] {
+  background-color: var(--pokemon-dark-card) !important;
+  border-color: var(--pokemon-dark-border) !important;
+}
+
+.dark-theme div[role="option"] {
+  background-color: var(--pokemon-dark-card) !important;
+  color: white !important;
+}
+
+.dark-theme div[role="option"]:hover {
+  background-color: var(--pokemon-dark-highlight) !important;
+}
+
+.dark-theme div[role="option"][aria-selected="true"] {
+  background-color: var(--pokemon-dark-highlight) !important;
+}
+
+/* Modal styling in dark mode */
+.dark-theme [role="dialog"] {
+  background-color: var(--pokemon-dark-card) !important;
+}
+
+.dark-theme button.close-button {
+  color: white !important;
+}
+
+/* Custom checkbox and radio styling for dark mode */
+.dark-theme input[type="checkbox"],
+.dark-theme input[type="radio"] {
+  border-color: var(--pokemon-dark-border) !important;
+}
+
+.dark-theme input[type="checkbox"]:checked,
+.dark-theme input[type="radio"]:checked {
+  background-color: var(--pokemon-dark-primary) !important;
+}
+
+/* Override for HeroUI Checkbox and Radio components */
+.dark-theme [data-slot="content"] [data-slot="inputWrapper"],
+.dark-theme [data-slot="content"] [data-slot="control"] {
+  background-color: var(--pokemon-dark-container) !important;
+  border-color: var(--pokemon-dark-border) !important;
+}
+
+.dark-theme [data-slot="content"] [data-slot="label"] {
+  color: var(--pokemon-dark-text) !important;
+}
+
+.dark-theme [data-slot="content"] [data-slot="control"][data-selected="true"] {
+  background-color: var(--pokemon-dark-primary) !important;
+  border-color: var(--pokemon-dark-primary) !important;
+}
+
+/* Fix slider in dark mode */
+.dark-theme span.slider-track {
+  background-color: var(--pokemon-dark-border) !important;
+}
+
+.dark-theme span.slider-thumb {
+  background-color: var(--pokemon-dark-primary) !important;
+}
+
+/* HeroUI Slider component overrides for dark mode */
+.dark-theme [data-slot="track"] {
+  background-color: var(--pokemon-dark-border) !important;
+}
+
+.dark-theme [data-slot="filler"] {
+  background-color: var(--pokemon-dark-primary) !important;
+}
+
+.dark-theme [data-slot="thumb"] {
+  background-color: var(--pokemon-dark-primary) !important;
+  border-color: var(--pokemon-dark-border) !important;
+}
+
+/* Special override for auto-complete popup in dark mode */
+.dark-theme div.nextui-c-hpzxck {
+  background-color: var(--pokemon-dark-card) !important;
+  border-color: var(--pokemon-dark-border) !important;
+}
+
+.dark-theme div.nextui-c-egxOLa {
+  background-color: var(--pokemon-dark-card) !important;
+}
+
+/* Fix borders and highlights in dark mode */
+.dark-theme {
+  border-color: var(--pokemon-dark-border) !important;
+}
+
+.dark-theme *[data-focus="true"] {
+  border-color: var(--pokemon-dark-primary) !important;
+}
+
+/* Hardcoded fixes for specific NextUI components in dark mode */
+.dark-theme .nextui-c-hzQjrs,
+.dark-theme .nextui-c-PJLV,
+.dark-theme .nextui-c-egxOLa,
+.dark-theme .nextui-c-hBBsNH {
+  background-color: var(--pokemon-dark-card) !important;
+  color: white !important;
+}
+
+/* Pokemon Toast Styling - Game Chat Box Style */
+[role="status"][aria-live="polite"],
+[data-slot="toast-group"] {
+  font-family: "Press Start 2P", cursive !important;
+  z-index: 9999 !important;
+}
+
+/* Toast container */
+[data-slot="toast-group"] > div {
+  border-width: var(--pixel-size) !important;
+  border-style: solid !important;
+  overflow: visible !important;
+  position: relative !important;
+}
+
+/* Game dialog box style for toast */
+[data-slot="toast"] {
+  font-family: "Press Start 2P", cursive !important;
+  font-size: 0.7rem !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0.05em !important;
+  padding: 12px 16px 12px 48px !important; /* Space for the Pokeball icon */
+  border-radius: 0 !important;
+  position: relative !important;
+  clip-path: polygon(
+    0% var(--pixel-size),
+    var(--pixel-size) 0%,
+    calc(100% - var(--pixel-size)) 0%,
+    100% var(--pixel-size),
+    100% calc(100% - var(--pixel-size)),
+    calc(100% - var(--pixel-size)) 100%,
+    var(--pixel-size) 100%,
+    0% calc(100% - var(--pixel-size))
+  ) !important;
+  box-shadow: var(--pixel-size) var(--pixel-size) 0 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Pokeball icon for toast */
+[data-slot="toast"]::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(
+    to bottom,
+    #ff0000 0%,
+    #ff0000 50%,
+    white 50%,
+    white 100%
+  );
+  border-radius: 50%;
+  border: 2px solid #000;
+  box-sizing: border-box;
+}
+
+/* Center line for Pokeball */
+[data-slot="toast"]::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 4px;
+  background-color: #000;
+  z-index: 1;
+}
+
+/* Center button for Pokeball */
+[data-slot="toast"] > div::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid #000;
+  z-index: 2;
+}
+
+/* Toast close button */
+[data-slot="toast"] button[aria-label="Close"] {
+  font-family: "Press Start 2P", cursive !important;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+[data-slot="toast"] button[aria-label="Close"]:hover {
+  opacity: 1;
+  background: transparent !important;
+}
+
+/* Light mode toast styling */
+[data-slot="toast"] {
+  background-color: #fff9c4 !important; /* Light yellow like game dialog */
+  color: #603813 !important; /* Dark brown text */
+  border-color: #f9a825 !important; /* Golden border */
+}
+
+/* Dark mode toast styling */
+.dark-theme [data-slot="toast"] {
+  background-color: #242424 !important; /* Dark gray background */
+  color: #ffd54f !important; /* Golden text */
+  border-color: #673ab7 !important; /* Purple border like night dialog */
+}
+
+/* Toast types/colors */
+/* Success toast - Grass type inspired */
+[data-slot="toast"][data-type="success"] {
+  background-color: #e8f5e9 !important;
+  color: #2e7d32 !important;
+  border-color: #4caf50 !important;
+}
+
+.dark-theme [data-slot="toast"][data-type="success"] {
+  background-color: #1e3c26 !important;
+  color: #81c784 !important;
+  border-color: #4caf50 !important;
+}
+
+/* Error toast - Fire type inspired */
+[data-slot="toast"][data-type="error"] {
+  background-color: #ffebee !important;
+  color: #c62828 !important;
+  border-color: #f44336 !important;
+}
+
+.dark-theme [data-slot="toast"][data-type="error"] {
+  background-color: #3e2723 !important;
+  color: #ef9a9a !important;
+  border-color: #d32f2f !important;
+}
+
+/* Warning toast - Electric type inspired */
+[data-slot="toast"][data-type="warning"] {
+  background-color: #fff8e1 !important;
+  color: #ff8f00 !important;
+  border-color: #ffc107 !important;
+}
+
+.dark-theme [data-slot="toast"][data-type="warning"] {
+  background-color: #3e3a1d !important;
+  color: #ffd54f !important;
+  border-color: #ffc107 !important;
+}
+
+/* Info toast - Water type inspired */
+[data-slot="toast"][data-type="info"] {
+  background-color: #e1f5fe !important;
+  color: #0277bd !important;
+  border-color: #03a9f4 !important;
+}
+
+.dark-theme [data-slot="toast"][data-type="info"] {
+  background-color: #0d3a5a !important;
+  color: #81d4fa !important;
+  border-color: #039be5 !important;
+}

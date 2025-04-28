@@ -8,7 +8,24 @@ export default {
     "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        pixel: ['"Press Start 2P"', 'cursive'],
+      },
+      backgroundColor: {
+        'pokemon-light': 'var(--pokemon-light-bg)',
+        'pokemon-dark': 'var(--pokemon-dark-bg)',
+      },
+      colors: {
+        'pokemon-red': 'var(--pokemon-red)',
+        'pokemon-blue': 'var(--pokemon-blue)',
+        'pokemon-yellow': 'var(--pokemon-yellow)',
+        'pokemon-green': 'var(--pokemon-green)',
+      },
+      borderWidth: {
+        'pixel': 'var(--pixel-size)',
+      },
+    },
   },
   darkMode: "class",
   plugins: [heroui()],
