@@ -9,7 +9,7 @@ WORKDIR /app
 COPY . .
 
 FROM base AS build
-RUN --mount=type-cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 RUN pnpm run build
 
 FROM caddy:2 AS runtime
