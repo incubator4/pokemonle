@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 import { Autocomplete, AutocompleteItem, Button } from "@heroui/react";
 import { usePokemonName, usePokemonIDByGeneration } from "../hooks/useFetch";
 import { useGenerationIDList } from "../hooks/useGeneration";
@@ -6,12 +6,18 @@ import { useGenerationIDList } from "../hooks/useGeneration";
 interface SearchBarProps {
   onChange?: (value: string) => void;
   value?: string;
+  onInputChange?: (value: string) => void;
+  inputValue?: string;
 }
 
-export const SearchBar = (props: SearchBarProps) => {
-  const { onChange } = props;
+export interface SearchBarRef {
+  resetSearchBar: () => void;
+}
 
-  const [search, setSearch] = useState("");
+export const SearchBar = forwardRef<SearchBarRef, SearchBarProps>((props, ref) => {
+  const { onChange, onInputChange, inputValue } = props;
+
+  const [search, setSearch] = useState(inputValue || "");
   const [selectedKey, setSelectedKey] = useState(props.value || "");
   const [localItems, setLocalItems] = useState<PokemonName[]>([]);
   const autocompleteRef = useRef<HTMLDivElement>(null);
@@ -20,10 +26,22 @@ export const SearchBar = (props: SearchBarProps) => {
   const { data } = usePokemonName(generationIDs, search);
   const { data: PokemonIDs } = usePokemonIDByGeneration(generationIDs);
 
+  useImperativeHandle(ref, () => ({
+    resetSearchBar: () => {
+      setSearch("");
+      setSelectedKey("");
+    }
+  }));
+
   // Update selected key when the prop value changes
   useEffect(() => {
     setSelectedKey(props.value || "");
   }, [props.value]);
+
+  // Update search when inputValue changes
+  useEffect(() => {
+    setSearch(inputValue || "");
+  }, [inputValue]);
 
   // Update local items when data changes
   useEffect(() => {
@@ -87,6 +105,7 @@ export const SearchBar = (props: SearchBarProps) => {
         const pokemonItem = data.find(item => item.pokemon_species_id === randomPokemon);
         if (pokemonItem) {
           setSearch(pokemonItem.name);
+          onInputChange?.(pokemonItem.name);
         }
       }
     }
@@ -102,12 +121,14 @@ export const SearchBar = (props: SearchBarProps) => {
       const selectedPokemon = localItems.find(item => item.pokemon_species_id.toString() === selectedId);
       if (selectedPokemon) {
         setSearch(selectedPokemon.name);
+        onInputChange?.(selectedPokemon.name);
       }
     }
   };
 
   const handleInputChange = (value: string) => {
     setSearch(value);
+    onInputChange?.(value);
   };
 
   return (
@@ -158,4 +179,4 @@ export const SearchBar = (props: SearchBarProps) => {
       </Button>
     </div>
   );
-};
+});

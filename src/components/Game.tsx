@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { SearchBar } from "./SearchBar";
+import { useEffect, useState, useRef } from "react";
+import { SearchBar, SearchBarRef } from "./SearchBar";
 import { Button, addToast } from "@heroui/react";
 import GameCard from "./GameCard";
 import { GameInit, GameGuess } from "../api/game";
@@ -14,7 +14,9 @@ export const Game = () => {
   const [isFinished, setFinished] = useState(false);
   const [compareList, setCompareList] = useState<Array<GameGuessData>>([]);
   const [restartCount, setRestartCount] = useState(0);
-  const [searchBarKey, setSearchBarKey] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const searchBarRef = useRef<SearchBarRef>(null);
 
   const { data: encodeGeneration } = useEncodeGeneration();
 
@@ -26,9 +28,17 @@ export const Game = () => {
     setSelectedPokemon(value);
   };
 
+  const handleSearchQueryChange = (value: string) => {
+    setSearchQuery(value);
+  };
+
   const resetSelection = () => {
     setSelectedPokemon(undefined);
-    setSearchBarKey(prev => prev + 1);
+    setSearchQuery("");
+    // Force reset the search bar
+    if (searchBarRef.current) {
+      searchBarRef.current.resetSearchBar();
+    }
   };
 
   const handleRestart = () => {
@@ -45,9 +55,11 @@ export const Game = () => {
       <div className="flex flex-col items-center m-4">
         <div className="w-full mb-8">
           <SearchBar
-            key={searchBarKey}
             value={selectedPokemon}
             onChange={handleSearchChange}
+            onInputChange={handleSearchQueryChange}
+            inputValue={searchQuery}
+            ref={searchBarRef}
           />
         </div>
 
