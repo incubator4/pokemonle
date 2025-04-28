@@ -13,6 +13,7 @@ export const Game = () => {
   const [isFinished, setFinished] = useState(false);
   const [compareList, setCompareList] = useState<Array<GameGuessData>>([]);
   const [restartCount, setRestartCount] = useState(0);
+  const [searchBarKey, setSearchBarKey] = useState(0);
 
   const { data: encodeGeneration } = useEncodeGeneration();
 
@@ -24,10 +25,15 @@ export const Game = () => {
     setSelectedPokemon(value);
   };
 
+  const resetSelection = () => {
+    setSelectedPokemon(undefined);
+    setSearchBarKey(prev => prev + 1);
+  };
+
   const handleRestart = () => {
     setFinished(false);
     setCompareList([]);
-    setSelectedPokemon(undefined);
+    resetSelection();
     setAnswer(undefined);
 
     setRestartCount((prev) => prev + 1);
@@ -36,7 +42,11 @@ export const Game = () => {
   return (
     <>
       <div className="flex flex-col items-center m-4">
-        <SearchBar value={selectedPokemon} onChange={handleSearchChange} />
+        <SearchBar
+          key={searchBarKey}
+          value={selectedPokemon}
+          onChange={handleSearchChange}
+        />
         <div
           id="button-group"
           className="flex w-full mt-6 space-x-3 justify-center"
@@ -60,6 +70,7 @@ export const Game = () => {
                     });
                   }
                   setCompareList((prev) => [...prev, res]);
+                  resetSelection();
                 });
               }
             }}
@@ -84,6 +95,7 @@ export const Game = () => {
                     });
                   }
                   setCompareList((prev) => [...prev, res]);
+                  resetSelection();
                 });
               }
             }}
