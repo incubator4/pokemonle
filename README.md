@@ -1,68 +1,54 @@
-## 说明
+# React + TypeScript + Vite
 
-本项目是由个人开发的猜宝可梦小网站，灵感来源于CS猜职业选手（也称弗一把）。
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-数据来源为 [神奇宝贝百科](https://wiki.52poke.com/wiki/%E4%B8%BB%E9%A1%B5) 与 https://github.com/42arch/pokemon-dataset-zh 。
+Currently, two official plugins are available:
 
-由于个人水平有限所以可能会出现许多意料之外的 bug ，欢迎在 Issues 提出。
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-视频：[https://www.bilibili.com/video/BV1XmLFz5E7Y](https://www.bilibili.com/video/BV1XmLFz5E7Y)
+## Expanding the ESLint configuration
 
-## 部署指南
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-#### 环境要求
-
-- vue >= 5.0.8
-- npm >= 10.2.1
-- Python >= 3.12.0
-
-### 部署步骤
-
-#### 后端部署
-
-1. 安装 flask 与 flask_cors 库
-
-   ```
-   pip install flask
-   pip install flask_cors 
-   ```
-
-2. 更改后端文件路径：
-
-打开 serve/src/utils/dataUtils.py 将第3行的
-
-```python
-root=xxx
+```js
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
 ```
 
-中的 `xxx` 更改为 serve/src/app.py 所处文件夹的绝对路径
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-3. 更改 ip 与端口（默认为9000端口，可选）
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-打开 serve/src/app.py 将第 58 行的
-
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+})
 ```
-app.run(host='0.0.0.0',port=9000)
-```
-
-更改为自己服务器所处ip与需要监听的端口
-
-4. 启动后端服务器
-
-使用 python 运行 serve/src/app.py 
-
-#### 前端部署
-
-1. 修改后端服务器url
-
-打开 web/.env 文件，将其中的 `VUE_APP_API_BASE_URL` 环境变量更改为刚刚运行的后端服务器监听地址
-
-2. 打包前端网页
-
-在 web 文件夹下使用 cmd 运行
-
-```
-npm run build
-```
-
-之后打开 web/dist/index.html 检查是否打包成功。
