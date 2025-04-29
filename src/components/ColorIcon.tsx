@@ -3,9 +3,9 @@ import { useTranslation } from "react-i18next";
 
 const cssMap: Record<string, Array<string>> = {
   black: ["bg-black", "text-white"],
-  blue: ["bg-blue-500", "text-black"],
+  blue: ["bg-blue-500", "text-white"],
   brown: ["bg-[#8B4513]", "text-white"],
-  gray: ["bg-gray-500", "text-black"],
+  gray: ["bg-gray-500", "text-white"],
   green: ["bg-green-500", "text-white"],
   pink: ["bg-pink-500", "text-black"],
   purple: ["bg-purple-500", "text-white"],
