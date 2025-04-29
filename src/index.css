@@ -1,1 +1,5 @@
+/*
+This file uses Tailwind CSS with a properly structured approach.
+All styles are organized in the src/styles directory.
+*/
 @import "./styles/index.css";

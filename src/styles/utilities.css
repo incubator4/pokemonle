@@ -1,5 +1,4 @@
 @layer utilities {
-  /* Fix for Autocomplete dropdown behavior */
   .pokemon-input-wrapper
     input:focus:not(:placeholder-shown)
     + [role="listbox"] {
@@ -10,7 +9,6 @@
     display: none !important;
   }
 
-  /* Prevent auto-selection of first item in dropdown */
   .pokemon-input-wrapper [role="option"] {
     background-color: transparent !important;
   }
