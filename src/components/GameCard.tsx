@@ -12,6 +12,7 @@ import {
 import { Key, useCallback } from "react";
 import TypeIcon from "./TypeIcon";
 import ColorIcon from "./ColorIcon";
+import { useTranslation } from "react-i18next";
 
 interface GameCardProps {
   items: Array<GameGuessData>;
@@ -74,6 +75,8 @@ const CheckIcon = () => (
 );
 
 const GameCard = (props: GameCardProps) => {
+  const { t } = useTranslation(["types", "abilities", "pokemon_species"]);
+
   const renderCell = useCallback((item: GameGuessData, key: Key) => {
     const value = item[key as keyof GameGuessData];
 
@@ -83,7 +86,7 @@ const GameCard = (props: GameCardProps) => {
           <User
             name={
               <p className="w-20 pokemon-font text-xs dark:text-white">
-                {item.name}
+                {t(item.identifier, { ns: "pokemon_species" })}
               </p>
             }
             avatarProps={{
@@ -94,7 +97,7 @@ const GameCard = (props: GameCardProps) => {
             }}
           >
             <p className="w-20 pokemon-font text-xs dark:text-white">
-              {item.name}
+              {item.identifier}
             </p>
           </User>
         );
@@ -102,7 +105,10 @@ const GameCard = (props: GameCardProps) => {
         return (
           <div className="flex flex-row flex-wrap justify-center gap-2 p-1">
             {item.type.map((type, index) => (
-              <Tooltip key={`${item.index}-${index}`} content={type.key}>
+              <Tooltip
+                key={`${item.index}-${index}`}
+                content={t(type.key, { ns: "types" })}
+              >
                 <div className={`${type.value ? "scale-110" : "opacity-70"}`}>
                   <TypeIcon
                     type={type.key}
@@ -130,7 +136,7 @@ const GameCard = (props: GameCardProps) => {
                   className="flex justify-center items-center pixel-border pokemon-font text-xs"
                 >
                   <p className="w-16 truncate text-center dark:text-white chip-content">
-                    {a.key}
+                    {t(a.key, { ns: "abilities" })}
                   </p>
                 </Chip>
               );

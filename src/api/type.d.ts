@@ -12,7 +12,7 @@ interface GameGuessDistanceResult {
 
 interface GameGuessData {
   index: number;
-  name: string;
+  identifier: string;
   type: Array<GameGuessItemResult<string>>;
   ability: Array<GameGuessItemResult<string>>;
   color: GameGuessItemResult<string>;
