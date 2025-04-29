@@ -81,10 +81,10 @@ const TypeIcon: React.FC<TypeIconProps> = ({
 
   return (
     <div
-      className={`inline-flex items-center justify-center rounded-full p-0.5 relative ${isMatched ? 'ring-2 ring-green-500 ring-offset-1' : ''}`}
-      style={{
-        backgroundColor: backgroundColor + '40' // Adding 40 for 25% opacity
-      }}
+      className={`inline-flex items-center justify-center rounded-full p-0.5 relative ${isMatched ? 'bg-green-200 ring-2 ring-green-500' : ''}`}
+      style={!isMatched ? {
+        backgroundColor: backgroundColor + '40' // Adding 40 for 25% opacity only when not matched
+      } : {}}
     >
       <img
         src={getIconPath()}
@@ -95,15 +95,7 @@ const TypeIcon: React.FC<TypeIconProps> = ({
           objectFit: 'contain'
         }}
       />
-      {isMatched && (
-        <div
-          className="absolute inset-0 rounded-full"
-          style={{
-            backgroundColor: 'rgba(74, 222, 128, 0.3)',
-            zIndex: 10
-          }}
-        />
-      )}
+      {/* Removed the overlay div, background color is now the indicator */}
     </div>
   );
 };
