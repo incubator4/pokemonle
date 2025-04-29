@@ -6,6 +6,7 @@ interface GameGuessItemResult<T> {
 
 interface GameGuessDistanceResult {
   key: number;
+  identifier: string;
   value: "equiv" | "high" | "low";
   dis: "equiv" | "far" | "near";
 }

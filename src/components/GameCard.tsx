@@ -75,7 +75,12 @@ const CheckIcon = () => (
 );
 
 const GameCard = (props: GameCardProps) => {
-  const { t } = useTranslation(["types", "abilities", "pokemon_species"]);
+  const { t } = useTranslation([
+    "generations",
+    "types",
+    "abilities",
+    "pokemon_species",
+  ]);
 
   const renderCell = useCallback((item: GameGuessData, key: Key) => {
     const value = item[key as keyof GameGuessData];
@@ -151,7 +156,9 @@ const GameCard = (props: GameCardProps) => {
             className="pixel-border pokemon-font text-xs"
           >
             <div className="flex items-center space-x-2">
-              <p className="dark:text-white chip-content">{item.gen.key}</p>
+              <p className="dark:text-white chip-content">
+                {t(item.gen.identifier, { ns: "generations" })}
+              </p>
               {item.gen.value !== "equiv" ? (
                 <>{item.gen.value === "high" ? <UpArrow /> : <DownArrow />}</>
               ) : (
