@@ -1,17 +1,35 @@
 @import "./assets/pokemon-theme.css";
+@import "./assets/utilities.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Set image rendering to pixelated for sharp pixel art */
-img {
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
-}
+@layer base {
+  /* Set image rendering to pixelated for sharp pixel art */
+  img {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
 
-/* Make transitions snappier for pixel art feel */
-* {
-  transition-duration: 150ms !important;
+  /* Make transitions snappier for pixel art feel */
+  * {
+    @apply transition-all duration-150 !important;
+  }
+
+  /* Ensure all text uses the pixel font */
+  input,
+  button,
+  div,
+  p,
+  span,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-pixel;
+  }
 }
