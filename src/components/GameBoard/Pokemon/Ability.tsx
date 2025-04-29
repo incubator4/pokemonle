@@ -5,7 +5,7 @@ export const PokemonAbility = (props: PokemonItemProps) => {
   const { item } = props;
   const { t } = useTranslation("abilities");
   return (
-    <div className="flex flex-col w-full space-y-1">
+    <div className="flex flex-col w-full items-center space-y-1">
       {item.ability.map((a, index) => {
         return (
           <Chip
