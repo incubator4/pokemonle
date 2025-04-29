@@ -1,6 +1,7 @@
 interface GameGuessItemResult<T> {
   key: T;
   value: boolean;
+  id?: number;
 }
 
 interface GameGuessDistanceResult {
@@ -14,6 +15,7 @@ interface GameGuessData {
   name: string;
   type: Array<GameGuessItemResult<string>>;
   ability: Array<GameGuessItemResult<string>>;
+  color: GameGuessItemResult<string>;
   gen: GameGuessDistanceResult;
   stat: {
     pow: GameGuessDistanceResult;

@@ -7,10 +7,11 @@ import {
   TableCell,
   Chip,
   User,
-  Tooltip
+  Tooltip,
 } from "@heroui/react";
 import { Key, useCallback } from "react";
 import TypeIcon from "./TypeIcon";
+import ColorIcon from "./ColorIcon";
 
 interface GameCardProps {
   items: Array<GameGuessData>;
@@ -22,6 +23,7 @@ const columns = [
   { key: "gen", label: "世代" },
   { key: "ability", label: "特性" },
   { key: "stat", label: "种族值" },
+  { key: "color", label: "颜色" },
 ];
 
 const UpArrow = () => (
@@ -79,15 +81,21 @@ const GameCard = (props: GameCardProps) => {
       case "index":
         return (
           <User
-            name={<p className="w-20 pokemon-font text-xs dark:text-white">{item.name}</p>}
+            name={
+              <p className="w-20 pokemon-font text-xs dark:text-white">
+                {item.name}
+              </p>
+            }
             avatarProps={{
               radius: "sm",
               size: "lg",
               src: `https://pokeimg.oss-cn-beijing.aliyuncs.com/pokemon_images/${item.index}.webp`,
-              className: "pixel-border"
+              className: "pixel-border",
             }}
           >
-            <p className="w-20 pokemon-font text-xs dark:text-white">{item.name}</p>
+            <p className="w-20 pokemon-font text-xs dark:text-white">
+              {item.name}
+            </p>
           </User>
         );
       case "type":
@@ -95,11 +103,13 @@ const GameCard = (props: GameCardProps) => {
           <div className="flex flex-row flex-wrap justify-center gap-2 p-1">
             {item.type.map((type, index) => (
               <Tooltip key={`${item.index}-${index}`} content={type.key}>
-                <div className={`${type.value ? 'scale-110' : 'opacity-70'}`}>
+                <div className={`${type.value ? "scale-110" : "opacity-70"}`}>
                   <TypeIcon
                     type={type.key}
                     size="md"
-                    className={`pixel-image ${type.value ? 'type-matched' : ''}`}
+                    className={`pixel-image ${
+                      type.value ? "type-matched" : ""
+                    }`}
                   />
                 </div>
               </Tooltip>
@@ -118,7 +128,9 @@ const GameCard = (props: GameCardProps) => {
                   color={a.value ? "success" : "default"}
                   className="flex justify-center items-center pixel-border pokemon-font text-xs"
                 >
-                  <p className="w-16 truncate text-center dark:text-white chip-content">{a.key}</p>
+                  <p className="w-16 truncate text-center dark:text-white chip-content">
+                    {a.key}
+                  </p>
                 </Chip>
               );
             })}
@@ -141,6 +153,8 @@ const GameCard = (props: GameCardProps) => {
             </div>
           </Chip>
         );
+      case "color":
+        return <ColorIcon item={item.color} />;
       case "stat":
         return (
           <Chip
@@ -149,7 +163,9 @@ const GameCard = (props: GameCardProps) => {
             className="pixel-border pokemon-font text-xs"
           >
             <div className="flex items-center space-x-2">
-              <p className="dark:text-white chip-content">{item.stat.pow.key}</p>
+              <p className="dark:text-white chip-content">
+                {item.stat.pow.key}
+              </p>
               {item.stat.pow.value !== "equiv" ? (
                 <>
                   {item.stat.pow.value === "high" ? <UpArrow /> : <DownArrow />}
@@ -172,19 +188,26 @@ const GameCard = (props: GameCardProps) => {
         className="pokemon-table pixel-border"
         classNames={{
           th: "pokemon-font text-xs text-center dark:text-white",
-          td: "text-center"
+          td: "text-center",
         }}
       >
         <TableHeader columns={columns}>
           {(column) => (
-            <TableColumn key={column.key} align="center" className="capitalize pixel-border">
+            <TableColumn
+              key={column.key}
+              align="center"
+              className="capitalize pixel-border"
+            >
               {column.label}
             </TableColumn>
           )}
         </TableHeader>
         <TableBody items={props.items}>
           {(item: GameGuessData) => (
-            <TableRow key={`${item.index}-${props.items.findIndex(i => i === item)}`} className="pixel-border">
+            <TableRow
+              key={`${item.index}-${props.items.findIndex((i) => i === item)}`}
+              className="pixel-border"
+            >
               {(columnKey) => (
                 <TableCell align="center" className="pixel-border">
                   {renderCell(item, columnKey)}
