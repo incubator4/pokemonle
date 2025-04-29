@@ -1,0 +1,7 @@
+@layer base {
+  @font-face {
+    font-family: "Fusion Pixel";
+    src: url("../assets/fusion-pixel-12px-monospaced-latin.woff2")
+      format("woff2");
+  }
+}
