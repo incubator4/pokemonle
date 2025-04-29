@@ -7,8 +7,10 @@ import {
   TableCell,
   Chip,
   User,
+  Tooltip
 } from "@heroui/react";
 import { Key, useCallback } from "react";
+import TypeIcon from "./TypeIcon";
 
 interface GameCardProps {
   items: Array<GameGuessData>;
@@ -90,19 +92,18 @@ const GameCard = (props: GameCardProps) => {
         );
       case "type":
         return (
-          <div className="flex flex-col space-y-1">
-            {item.type.map((type, index) => {
-              return (
-                <Chip
-                  key={`${item.index}-${index}`}
-                  variant="flat"
-                  color={type.value ? "success" : "default"}
-                  className="flex justify-center items-center pixel-border pokemon-font text-xs"
-                >
-                  <p className="w-16 truncate text-center dark:text-white chip-content">{type.key}</p>
-                </Chip>
-              );
-            })}
+          <div className="flex flex-row flex-wrap justify-center gap-2 p-1">
+            {item.type.map((type, index) => (
+              <Tooltip key={`${item.index}-${index}`} content={type.key}>
+                <div className={`${type.value ? 'scale-110' : 'opacity-70'}`}>
+                  <TypeIcon
+                    type={type.key}
+                    size="md"
+                    className="pixel-image"
+                  />
+                </div>
+              </Tooltip>
+            ))}
           </div>
         );
 
@@ -182,8 +183,8 @@ const GameCard = (props: GameCardProps) => {
           )}
         </TableHeader>
         <TableBody items={props.items}>
-          {(item) => (
-            <TableRow key={item.index} className="pixel-border">
+          {(item: GameGuessData) => (
+            <TableRow key={`${item.index}-${props.items.findIndex(i => i === item)}`} className="pixel-border">
               {(columnKey) => (
                 <TableCell align="center" className="pixel-border">
                   {renderCell(item, columnKey)}

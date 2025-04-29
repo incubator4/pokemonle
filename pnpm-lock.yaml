@@ -20,6 +20,12 @@ importers:
       '@heroui/use-theme':
         specifier: ^2.1.6
         version: 2.1.6(react@19.1.0)
+      '@pokemonle/icons-react':
+        specifier: ^0.0.3
+        version: 0.0.3(react@19.1.0)
+      '@pokemonle/icons-svg':
+        specifier: ^0.0.3
+        version: 0.0.3
       '@react-stately/data':
         specifier: ^3.12.3
         version: 3.12.3(react@19.1.0)
@@ -1001,6 +1007,17 @@ packages:
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
+
+  '@pokemonle/icons-react@0.0.3':
+    resolution: {integrity: sha512-MoCPOuAVNhAwPOY4tneQBRRcaKTfJXvo/Pv2r7bjDUxAXousKEcWX1iLK2ZNkvF3l6yMwJeYZqGzBl9My6Cuzw==}
+    peerDependencies:
+      react: '>= 18 || >= 19'
+    peerDependenciesMeta:
+      react:
+        optional: true
+
+  '@pokemonle/icons-svg@0.0.3':
+    resolution: {integrity: sha512-yv4+IgQP4hIxJuDLllctaclX42QiRId7FkBFt2wi7nh3mgVfuyiawjLVxOsJW9GYjVzseE7o6d07lDOvozFGwA==}
 
   '@react-aria/breadcrumbs@3.5.22':
     resolution: {integrity: sha512-Jhx3eJqvuSUFL5/TzJ7EteluySdgKVkYGJ72Jz6AdEkiuoQAFbRZg4ferRIXQlmFL2cj7Z3jo8m8xGitebMtgw==}
@@ -4323,6 +4340,12 @@ snapshots:
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
+
+  '@pokemonle/icons-react@0.0.3(react@19.1.0)':
+    optionalDependencies:
+      react: 19.1.0
+
+  '@pokemonle/icons-svg@0.0.3': {}
 
   '@react-aria/breadcrumbs@3.5.22(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:

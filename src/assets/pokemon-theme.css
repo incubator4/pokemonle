@@ -997,3 +997,11 @@ h6 {
   color: #81d4fa !important;
   border-color: #039be5 !important;
 }
+
+.pixel-image {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  display: inline-block;
+  vertical-align: middle;
+}
