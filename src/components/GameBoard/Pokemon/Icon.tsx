@@ -74,7 +74,9 @@ const MatchCover: React.FC<MatchCoverProps> = ({
   return (
     <div
       className={`inline-flex items-center justify-center rounded-full p-0.5 relative ${
-        matched ? "bg-green-400 ring-2 ring-green-400" : ""
+        matched
+          ? "bg-green-400 dark:bg-green-600 ring-2 ring-green-400 dark:ring-green-600"
+          : ""
       }`}
       style={{ backgroundColor }}
     >

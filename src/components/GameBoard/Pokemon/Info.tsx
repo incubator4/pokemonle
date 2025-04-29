@@ -14,7 +14,7 @@ export const PokemonInfo = (props: PokemonItemProps) => {
       avatarProps={{
         radius: "sm",
         size: "lg",
-        src: `https://pokeimg.oss-cn-beijing.aliyuncs.com/pokemon_images/${item.index}.webp`,
+        src: `https://image.pokemonle.com/pokemon/${item.index}.webp`,
         className: "pixel-border",
       }}
     >
