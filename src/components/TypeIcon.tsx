@@ -1,10 +1,16 @@
 import React from 'react';
 
+interface TypeData {
+  key: string;
+  value: boolean;
+}
+
 interface TypeIconProps {
-  type: string;
+  type: string | TypeData;
   className?: string;
   size?: 'sm' | 'md' | 'lg';
   mono?: boolean;
+  matched?: boolean; // This will be used as a fallback if type isn't an object
 }
 
 // Map of Pokémon types to their traditional colors
@@ -29,56 +35,22 @@ const typeColors: Record<string, string> = {
   fairy: '#EE99AC'
 };
 
-// Map Chinese type names to English for SVG file names
-const typeNameMap: Record<string, string> = {
-  // Chinese to English mappings
-  '一般': 'normal',
-  '火': 'fire',
-  '水': 'water',
-  '电': 'electric',
-  '草': 'grass',
-  '冰': 'ice',
-  '格斗': 'fighting',
-  '毒': 'poison',
-  '地面': 'ground',
-  '飞行': 'flying',
-  '超能力': 'psychic',
-  '虫': 'bug',
-  '岩石': 'rock',
-  '幽灵': 'ghost',
-  '龙': 'dragon',
-  '恶': 'dark',
-  '钢': 'steel',
-  '妖精': 'fairy',
-  // English names already match
-  'normal': 'normal',
-  'fire': 'fire',
-  'water': 'water',
-  'electric': 'electric',
-  'grass': 'grass',
-  'ice': 'ice',
-  'fighting': 'fighting',
-  'poison': 'poison',
-  'ground': 'ground',
-  'flying': 'flying',
-  'psychic': 'psychic',
-  'bug': 'bug',
-  'rock': 'rock',
-  'ghost': 'ghost',
-  'dragon': 'dragon',
-  'dark': 'dark',
-  'steel': 'steel',
-  'fairy': 'fairy'
-};
-
 const TypeIcon: React.FC<TypeIconProps> = ({
   type,
   className = '',
   size = 'md',
-  mono = false
+  mono = false,
+  matched = false
 }) => {
-  // Convert type name to lowercase and map to English
-  const normalizedType = typeNameMap[type.toLowerCase()] || type.toLowerCase();
+  // Check if type is an object with key/value or just a string
+  const isTypeObject = typeof type === 'object' && type !== null;
+
+  // Get the actual type name and match status
+  const typeName = isTypeObject ? (type as TypeData).key : type as string;
+  const isMatched = isTypeObject ? (type as TypeData).value : matched;
+
+  // Use type directly as it's already in English
+  const normalizedType = typeName.toLowerCase();
 
   // Icon sizing based on prop
   const sizeClasses = {
@@ -109,20 +81,29 @@ const TypeIcon: React.FC<TypeIconProps> = ({
 
   return (
     <div
-      className="inline-flex items-center justify-center rounded-full p-0.5"
+      className={`inline-flex items-center justify-center rounded-full p-0.5 relative ${isMatched ? 'ring-2 ring-green-500 ring-offset-1' : ''}`}
       style={{
         backgroundColor: backgroundColor + '40' // Adding 40 for 25% opacity
       }}
     >
       <img
         src={getIconPath()}
-        alt={`${type} type`}
+        alt={`${typeName} type`}
         className={combinedClasses}
         style={{
           imageRendering: 'pixelated',
           objectFit: 'contain'
         }}
       />
+      {isMatched && (
+        <div
+          className="absolute inset-0 rounded-full"
+          style={{
+            backgroundColor: 'rgba(74, 222, 128, 0.3)',
+            zIndex: 10
+          }}
+        />
+      )}
     </div>
   );
 };

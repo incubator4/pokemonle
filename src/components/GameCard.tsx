@@ -99,7 +99,7 @@ const GameCard = (props: GameCardProps) => {
                   <TypeIcon
                     type={type.key}
                     size="md"
-                    className="pixel-image"
+                    className={`pixel-image ${type.value ? 'type-matched' : ''}`}
                   />
                 </div>
               </Tooltip>

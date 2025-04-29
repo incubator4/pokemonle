@@ -142,6 +142,8 @@
     inset: 0;
     background-color: var(--pokemon-green);
     opacity: 0.3;
+    border-radius: 50%;
     pointer-events: none;
+    z-index: 1;
   }
 }
