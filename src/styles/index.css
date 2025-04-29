@@ -1,0 +1,9 @@
+@import "../assets/pokemon-theme.css";
+@import "../assets/utilities.css";
+@import "./base.css";
+@import "./components.css";
+@import "./utilities.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

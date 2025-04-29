@@ -1,0 +1,67 @@
+/* Pokemon Pixel Art Theme */
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+:root {
+  /* Light theme colors */
+  --pokemon-red: #ff0000;
+  --pokemon-blue: #0000ff;
+  --pokemon-yellow: #ffde00;
+  --pokemon-green: #00a650;
+  --pokemon-light-bg: #f0f0f0;
+  --pokemon-light-container: #ffffff;
+  --pokemon-light-border: #d0d0d0;
+  --pokemon-light-text: #333333;
+  --pokemon-light-card: #ffffff;
+  --pokemon-light-highlight: #edf2f7;
+  --pokemon-light-primary: #3e75c3;
+  --pokemon-light-secondary: #e54222;
+  --pokemon-light-success: #4caf50;
+  --pokemon-light-danger: #f44336;
+  --pokemon-light-warning: #ff9800;
+
+  /* Dark theme colors */
+  --pokemon-dark-bg: #121212;
+  --pokemon-dark-container: #1e1e1e;
+  --pokemon-dark-border: #3a3f5e;
+  --pokemon-dark-text: #e0e0e0;
+  --pokemon-dark-card: #1a1a1a;
+  --pokemon-dark-secondary-card: #0f0f0f;
+  --pokemon-dark-highlight: #2a2a2a;
+  --pokemon-dark-primary: #5e92f3;
+  --pokemon-dark-secondary: #ff6b6b;
+  --pokemon-dark-success: #66bb6a;
+  --pokemon-dark-danger: #f44336;
+  --pokemon-dark-warning: #ffb74d;
+
+  /* Pixel sizes */
+  --pixel-size: 2px;
+}
+
+@layer base {
+  /* Set image rendering to pixelated for sharp pixel art */
+  img {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+
+  /* Make transitions snappier for pixel art feel */
+  * {
+    @apply transition-all duration-150 !important;
+  }
+
+  /* Ensure all text uses the pixel font */
+  input,
+  button,
+  div,
+  p,
+  span,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-pixel;
+  }
+}
