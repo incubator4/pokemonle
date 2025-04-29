@@ -1,0 +1,3 @@
+interface PokemonItemProps {
+  item: GameGuessData;
+}

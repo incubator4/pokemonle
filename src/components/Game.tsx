@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { SearchBar, SearchBarRef } from "./SearchBar";
 import { Button, addToast } from "@heroui/react";
-import GameCard from "./GameCard";
+import GameCard from "./GameBoard";
 import { GameInit, GameGuess } from "../api/game";
 import { useEncodeGeneration } from "../hooks/useGeneration";
 import pokeball from "../assets/pokeball.svg";
