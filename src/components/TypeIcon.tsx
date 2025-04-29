@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import { Image } from "@heroui/react";
 
 interface TypeData {
   key: string;
@@ -8,45 +9,45 @@ interface TypeData {
 interface TypeIconProps {
   type: string | TypeData;
   className?: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
   mono?: boolean;
   matched?: boolean; // This will be used as a fallback if type isn't an object
 }
 
 // Map of Pokémon types to their traditional colors
 const typeColors: Record<string, string> = {
-  normal: '#A8A878',
-  fire: '#F08030',
-  water: '#6890F0',
-  electric: '#F8D030',
-  grass: '#78C850',
-  ice: '#98D8D8',
-  fighting: '#C03028',
-  poison: '#A040A0',
-  ground: '#E0C068',
-  flying: '#A890F0',
-  psychic: '#F85888',
-  bug: '#A8B820',
-  rock: '#B8A038',
-  ghost: '#705898',
-  dragon: '#7038F8',
-  dark: '#705848',
-  steel: '#B8B8D0',
-  fairy: '#EE99AC'
+  normal: "#A8A878",
+  fire: "#F08030",
+  water: "#6890F0",
+  electric: "#F8D030",
+  grass: "#78C850",
+  ice: "#98D8D8",
+  fighting: "#C03028",
+  poison: "#A040A0",
+  ground: "#E0C068",
+  flying: "#A890F0",
+  psychic: "#F85888",
+  bug: "#A8B820",
+  rock: "#B8A038",
+  ghost: "#705898",
+  dragon: "#7038F8",
+  dark: "#705848",
+  steel: "#B8B8D0",
+  fairy: "#EE99AC",
 };
 
 const TypeIcon: React.FC<TypeIconProps> = ({
   type,
-  className = '',
-  size = 'md',
+  className = "",
+  size = "md",
   mono = false,
-  matched = false
+  matched = false,
 }) => {
   // Check if type is an object with key/value or just a string
-  const isTypeObject = typeof type === 'object' && type !== null;
+  const isTypeObject = typeof type === "object" && type !== null;
 
   // Get the actual type name and match status
-  const typeName = isTypeObject ? (type as TypeData).key : type as string;
+  const typeName = isTypeObject ? (type as TypeData).key : (type as string);
   const isMatched = isTypeObject ? (type as TypeData).value : matched;
 
   // Use type directly as it's already in English
@@ -54,19 +55,21 @@ const TypeIcon: React.FC<TypeIconProps> = ({
 
   // Icon sizing based on prop
   const sizeClasses = {
-    sm: 'w-4 h-4',
-    md: 'w-6 h-6',
-    lg: 'w-8 h-8'
+    sm: "w-4 h-4",
+    md: "w-6 h-6",
+    lg: "w-8 h-8",
   };
 
   // Create a proper path using dynamic imports
   const getIconPath = () => {
     try {
       // Use unpkg CDN URL (as shown in the docs)
-      return `https://unpkg.com/@pokemonle/icons-svg@latest/icons/${normalizedType}${mono ? '-mono' : ''}.svg`;
+      return `https://unpkg.com/@pokemonle/icons-svg@latest/icons/${normalizedType}${
+        mono ? "-mono" : ""
+      }.svg`;
     } catch (error) {
       console.error(`Failed to load icon for type: ${normalizedType}`, error);
-      return ''; // Return empty if icon not found
+      return ""; // Return empty if icon not found
     }
   };
 
@@ -77,22 +80,28 @@ const TypeIcon: React.FC<TypeIconProps> = ({
   const combinedClasses = `${baseClasses} ${className}`;
 
   // Get the background color for type or use a default
-  const backgroundColor = typeColors[normalizedType] || '#CCC';
+  const backgroundColor = typeColors[normalizedType] || "#CCC";
 
   return (
     <div
-      className={`inline-flex items-center justify-center rounded-full p-0.5 relative ${isMatched ? 'bg-green-200 ring-2 ring-green-500' : ''}`}
-      style={!isMatched ? {
-        backgroundColor: backgroundColor + '40' // Adding 40 for 25% opacity only when not matched
-      } : {}}
+      className={`inline-flex items-center justify-center rounded-full p-0.5 relative ${
+        isMatched ? "bg-green-700 ring-2 ring-green-500" : ""
+      }`}
+      style={
+        !isMatched
+          ? {
+              backgroundColor: backgroundColor + "40", // Adding 40 for 25% opacity only when not matched
+            }
+          : {}
+      }
     >
-      <img
+      <Image
         src={getIconPath()}
         alt={`${typeName} type`}
         className={combinedClasses}
         style={{
-          imageRendering: 'pixelated',
-          objectFit: 'contain'
+          imageRendering: "pixelated",
+          objectFit: "contain",
         }}
       />
       {/* Removed the overlay div, background color is now the indicator */}

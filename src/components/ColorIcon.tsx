@@ -2,15 +2,15 @@ import { Chip } from "@heroui/react";
 
 const cssMap: Record<string, Array<string>> = {
   black: ["bg-black", "text-white"],
-  blue: ["bg-blue-300", "text-black"],
+  blue: ["bg-blue-500", "text-black"],
   brown: ["bg-[#8B4513]", "text-white"],
-  gray: ["bg-gray-300", "text-black"],
-  green: ["bg-green-300", "text-black"],
-  pink: ["bg-pink-300", "text-black"],
-  purple: ["bg-purple-300", "text-white"],
-  red: ["bg-red-300", "text-black"],
+  gray: ["bg-gray-500", "text-black"],
+  green: ["bg-green-500", "text-black"],
+  pink: ["bg-pink-500", "text-black"],
+  purple: ["bg-purple-500", "text-white"],
+  red: ["bg-red-500", "text-black"],
   white: ["bg-white", "text-black"],
-  yellow: ["bg-yellow-300", "text-black"],
+  yellow: ["bg-yellow-500", "text-black"],
 };
 
 const CheckIcon = () => (

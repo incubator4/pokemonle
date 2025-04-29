@@ -106,6 +106,7 @@ const GameCard = (props: GameCardProps) => {
                 <div className={`${type.value ? "scale-110" : "opacity-70"}`}>
                   <TypeIcon
                     type={type.key}
+                    matched={type.value}
                     size="md"
                     className={`pixel-image ${
                       type.value ? "type-matched" : ""
