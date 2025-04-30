@@ -23,25 +23,39 @@ export const SettingsIcon = (props: React.SVGProps<SVGSVGElement>) => (
     height="24"
     viewBox="0 0 24 24"
     fill="none"
-    style={{ imageRendering: 'pixelated' }}
+    style={{ imageRendering: "pixelated" }}
     {...props}
   >
     {/* Great Ball (超级球) icon */}
     <g>
       {/* Outer circle */}
-      <circle cx="12" cy="12" r="10" fill="#FFFFFF" stroke="#000000" strokeWidth="1.5" />
+      <circle
+        cx="12"
+        cy="12"
+        r="10"
+        fill="#FFFFFF"
+        stroke="#000000"
+        strokeWidth="1.5"
+      />
 
       {/* Blue top half */}
-      <path d="M12,2 a10,10 0 0,1 10,10 h-20 a10,10 0 0,1 10,-10 z" fill="#3B88C3" />
-
-      {/* Red accent lines on top */}
-      <path d="M12,2 a10,10 0 0,1 10,10 h-20 a10,10 0 0,1 10,-10 z" fill="none" stroke="#CC0000" strokeWidth="1" strokeDasharray="2 2" />
+      <path
+        d="M12,2 a10,10 0 0,1 10,10 h-20 a10,10 0 0,1 10,-10 z"
+        fill="#3B88C3"
+      />
 
       {/* Center band */}
       <rect x="2" y="11" width="20" height="2" fill="#000000" />
 
       {/* Center button */}
-      <circle cx="12" cy="12" r="2.5" fill="#FFFFFF" stroke="#000000" strokeWidth="1.5" />
+      <circle
+        cx="12"
+        cy="12"
+        r="2.5"
+        fill="#FFFFFF"
+        stroke="#000000"
+        strokeWidth="1.5"
+      />
       <circle cx="12" cy="12" r="1" fill="#CCCCCC" />
     </g>
   </svg>
@@ -86,7 +100,7 @@ export const SettingModal = () => {
           base: "pokemon-modal",
           header: "pokemon-font text-base",
           body: "pokemon-font text-xs",
-          footer: "gap-2"
+          footer: "gap-2",
         }}
       >
         <ModalContent>
@@ -96,9 +110,17 @@ export const SettingModal = () => {
                 游戏设置
               </ModalHeader>
               <ModalBody>
-                <RadioGroup isDisabled orientation="horizontal" className="pokemon-font text-xs">
+                <RadioGroup
+                  isDisabled
+                  orientation="horizontal"
+                  className="pokemon-font text-xs"
+                >
                   {["easy", "normal", "hard"].map((item, index) => (
-                    <Radio value={item} key={index} className="pokemon-font text-xs">
+                    <Radio
+                      value={item}
+                      key={index}
+                      className="pokemon-font text-xs"
+                    >
                       {item}
                     </Radio>
                   ))}
@@ -168,7 +190,9 @@ export const SettingModal = () => {
                   </Switch>
                 </div>
                 <div className="w-full pixel-divider my-2" />
-                <p className="font-bold pokemon-font text-sm">猜测次数: {settings.chance}</p>
+                <p className="font-bold pokemon-font text-sm">
+                  猜测次数: {settings.chance}
+                </p>
                 <Slider
                   value={settings.chance}
                   aria-label="Chance"

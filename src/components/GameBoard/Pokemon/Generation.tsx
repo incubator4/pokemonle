@@ -1,6 +1,6 @@
 import { Chip } from "@heroui/react";
 import { useTranslation } from "react-i18next";
-import { UpArrow, DownArrow, CheckIcon } from "./Icon";
+import { DistanceIcon } from "./Icon";
 
 export const PokemonGeneration = (props: PokemonItemProps) => {
   const { item } = props;
@@ -13,11 +13,7 @@ export const PokemonGeneration = (props: PokemonItemProps) => {
     >
       <div className="flex items-center space-x-2">
         <p className="dark:text-white chip-content">{t(item.gen.identifier)}</p>
-        {item.gen.value !== "equiv" ? (
-          <>{item.gen.value === "high" ? <UpArrow /> : <DownArrow />}</>
-        ) : (
-          <CheckIcon />
-        )}
+        <DistanceIcon {...item.gen} />
       </div>
     </Chip>
   );

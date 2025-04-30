@@ -1,6 +1,6 @@
 import { Chip } from "@heroui/react";
 // import { useTranslation } from "react-i18next";
-import { UpArrow, DownArrow, CheckIcon } from "./Icon";
+import { DistanceIcon } from "./Icon";
 
 export const PokemonStat = (props: PokemonItemProps) => {
   const { item } = props;
@@ -13,11 +13,7 @@ export const PokemonStat = (props: PokemonItemProps) => {
     >
       <div className="flex items-center space-x-2">
         <p className="dark:text-white chip-content">{item.stat.pow.key}</p>
-        {item.stat.pow.value !== "equiv" ? (
-          <>{item.stat.pow.value === "high" ? <UpArrow /> : <DownArrow />}</>
-        ) : (
-          <CheckIcon />
-        )}
+        <DistanceIcon {...item.stat.pow} />
       </div>
     </Chip>
   );

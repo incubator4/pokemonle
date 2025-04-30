@@ -1,6 +1,6 @@
 import { Chip } from "@heroui/react";
 import { useTranslation } from "react-i18next";
-import { CheckIcon, ErrorIcon } from "./Icon";
+import { ResultIcon } from "./Icon";
 
 const cssMap: Record<string, string> = {
   black: "bg-black",
@@ -31,7 +31,7 @@ export const PokemonColor: React.FC<PokemonItemProps> = (
       classNames={{ base: cssMap[item.color.key] }}
     >
       <div className={`flex items-center space-x-2 ${textClass}`}>
-        {item.color.value ? <CheckIcon /> : <ErrorIcon />}
+        <ResultIcon {...item.color} />
         <div className={textClass}>{t(item.color.key)}</div>
       </div>
     </Chip>
