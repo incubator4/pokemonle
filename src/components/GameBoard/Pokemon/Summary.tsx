@@ -11,6 +11,7 @@ import {
   useDisclosure,
   Chip,
 } from "@heroui/react";
+import { PokemonGeneration } from "./Generation";
 
 export const PokemonSummary = (props: PokemonItemProps) => {
   const { item } = props;
@@ -18,12 +19,12 @@ export const PokemonSummary = (props: PokemonItemProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <div className="flex">
-      <div className="flex flex-col w-20 flex-1">
+      <div className="flex flex-col w-22 flex-1">
         <PokemonType item={item} />
-        <div className="col-span-1">GEN {item.gen.key}</div>
+        <PokemonGeneration item={item} />
       </div>
 
-      <div className="flex flex-col flex-1 space-y-2">
+      <div className="flex flex-col flex-1 space-y-2.5">
         <Chip
           variant="flat"
           color={item.stat.pow.value === "equiv" ? "success" : "default"}
@@ -49,7 +50,7 @@ export const PokemonSummary = (props: PokemonItemProps) => {
               {(onClose) => (
                 <>
                   <DrawerHeader className="flex flex-col gap-1">
-                    Drawer Title
+                    {t(item.identifier, { ns: "pokemon_species" })}
                   </DrawerHeader>
                   <DrawerBody>
                     <p>
