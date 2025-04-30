@@ -5,8 +5,10 @@ import GameCard from "./GameBoard";
 import { GameInit, GameGuess } from "../api/game";
 import { useEncodeGeneration } from "../hooks/useGeneration";
 import pokeball from "../assets/pokeball.svg";
+import { useTranslation } from "react-i18next";
 
 export const Game = () => {
+  const { t } = useTranslation();
   const [selectedPokemon, setSelectedPokemon] = useState<string | undefined>(
     undefined
   );
@@ -93,7 +95,7 @@ export const Game = () => {
           >
             <div className="flex items-center justify-center">
               <img src={pokeball} alt="Pokeball" className="w-5 h-5 mr-2" />
-              提交
+              {t("submit")}
             </div>
           </Button>
           <Button
@@ -119,14 +121,14 @@ export const Game = () => {
               }
             }}
           >
-            投降
+            {t("giveUp")}
           </Button>
           <Button
             color="success"
             onPress={handleRestart}
             className="w-32 h-12 pixel-button pixel-button-success pixel-corners pokemon-font"
           >
-            重开
+            {t("reset")}
           </Button>
         </div>
 

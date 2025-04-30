@@ -9,22 +9,19 @@ export const PokemonInfo = (props: PokemonItemProps) => {
   const { item } = props;
   const { t } = useTranslation(["pokemon_species"]);
   return (
-    <User
-      name={
-        <p className="w-20 pokemon-font text-xs dark:text-white">
-          {t(item.identifier)}
-        </p>
-      }
-      avatarProps={{
-        radius: "sm",
-        size: "lg",
-        src: `${image_host}/pokemon/${item.index}.webp`,
-        className: "pixel-border",
-      }}
-    >
-      <p className="w-20 pokemon-font text-xs dark:text-white">
-        {item.identifier}
+    <>
+      <User
+        name=""
+        avatarProps={{
+          radius: "sm",
+          size: "lg",
+          src: `${image_host}/pokemon/${item.index}.webp`,
+          className: "pixel-border",
+        }}
+      />
+      <p className="pokemon-font text-xs text-center dark:text-white">
+        {t(item.identifier)}
       </p>
-    </User>
+    </>
   );
 };

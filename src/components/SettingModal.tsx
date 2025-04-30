@@ -16,6 +16,7 @@ import {
 import { useEffect } from "react";
 import { useGenerationList } from "../hooks/useFetch";
 import useSettings from "../hooks/useSettings";
+import { useTranslation } from "react-i18next";
 
 export const SettingsIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -62,6 +63,7 @@ export const SettingsIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 export const SettingModal = () => {
+  const { t } = useTranslation("setting");
   const { settings, setSettingKey } = useSettings();
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -107,7 +109,7 @@ export const SettingModal = () => {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1 pixel-border-bottom">
-                游戏设置
+                {t("title")}
               </ModalHeader>
               <ModalBody>
                 <RadioGroup
@@ -121,7 +123,7 @@ export const SettingModal = () => {
                       key={index}
                       className="pokemon-font text-xs"
                     >
-                      {item}
+                      {t(item)}
                     </Radio>
                   ))}
                 </RadioGroup>
@@ -156,7 +158,9 @@ export const SettingModal = () => {
                     : []}
                 </CheckboxGroup>
                 <div className="w-full pixel-divider my-2" />
-                <p className="font-bold pokemon-font text-sm">显示信息</p>
+                <p className="font-bold pokemon-font text-sm">
+                  {t("information")}
+                </p>
                 <div className="flex flex-col gap-2">
                   <Switch
                     size="sm"
@@ -166,7 +170,7 @@ export const SettingModal = () => {
                       setSettingKey("stats", val);
                     }}
                   >
-                    更多种族值信息
+                    {t("moreStats")}
                   </Switch>
                   <Switch
                     size="sm"
@@ -176,7 +180,7 @@ export const SettingModal = () => {
                       setSettingKey("shape", val);
                     }}
                   >
-                    更多外形信息
+                    {t("moreShapes")}
                   </Switch>
                   <Switch
                     size="sm"
@@ -186,12 +190,12 @@ export const SettingModal = () => {
                       setSettingKey("breeding", val);
                     }}
                   >
-                    培育(蛋组/捕获率)
+                    {t("moreBreeding")}
                   </Switch>
                 </div>
                 <div className="w-full pixel-divider my-2" />
                 <p className="font-bold pokemon-font text-sm">
-                  猜测次数: {settings.chance}
+                  {t("guessCount")}: {settings.chance}
                 </p>
                 <Slider
                   value={settings.chance}

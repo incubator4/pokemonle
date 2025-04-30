@@ -7,6 +7,7 @@ interface GameGuessData {
   gen: GameGuessDistanceResult;
   stat: {
     pow: GameGuessDistanceResult;
+    detail: Array<GameGuessDistanceResult>;
   };
   breeding: {
     egg_group: Array<GameGuessItemResult<string>>;
