@@ -8,6 +8,17 @@ const zhHans: ResourceLanguage = {
     giveUp: "放弃",
     choicePokemon: "选择一个宝可梦",
     inputPlaceholder: "搜索宝可梦...",
+
+    pokemon: "宝可梦",
+    pokemon_type: "属性",
+    generation: "世代",
+    ability: "特性",
+    stat: "种族值",
+    color: "颜色",
+    breeding: "培育",
+    eggGroup: "蛋组",
+    summary: "简介",
+    detail: "详细信息",
   },
   setting: {
     title: "设置",

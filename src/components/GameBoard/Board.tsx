@@ -7,7 +7,6 @@ import {
   TableCell,
 } from "@heroui/react";
 import { Key, useCallback, useMemo } from "react";
-import { columns } from "./column";
 import {
   PokemonInfo,
   PokemonAbility,
@@ -16,8 +15,11 @@ import {
   PokemonStat,
   PokemonColor,
   PokemonBreeding,
+  PokemonSummary,
 } from "./Pokemon";
 import useSettings from "../../hooks/useSettings";
+import { useTranslation } from "react-i18next";
+import { useWindowSize } from "usehooks-ts";
 
 interface GameCardProps {
   items: Array<GameGuessData>;
@@ -25,19 +27,36 @@ interface GameCardProps {
 
 const GameBoard = (props: GameCardProps) => {
   const { settings } = useSettings();
+  const { t } = useTranslation();
+  const { width } = useWindowSize();
+  const isMobile = width < 640;
 
   const cols = useMemo(() => {
-    return columns.filter((col) => {
-      // Hide breeding column if breeding is disabled
-      if (col.key === "breeding") {
-        return settings.breeding;
-      }
-      if (col.key === "color") {
-        return settings.shape;
-      }
-      return true;
-    });
-  }, [settings]);
+    const columns = [
+      { key: "index", label: "pokemon" },
+      { key: "type", label: "pokemon_type" },
+      { key: "gen", label: "generation" },
+      { key: "ability", label: "ability" },
+      { key: "stat", label: "stat" },
+      { key: "color", label: "color" },
+      { key: "breeding", label: "breeding" },
+    ];
+
+    // Hide columns based on screen size
+
+    return isMobile
+      ? [columns[0], { key: "summary", label: "summary" }]
+      : columns.filter((col) => {
+          // Hide breeding column if breeding is disabled
+          if (col.key === "breeding") {
+            return settings.breeding;
+          }
+          if (col.key === "color") {
+            return settings.shape;
+          }
+          return true;
+        });
+  }, [settings, isMobile]);
 
   const renderCell = useCallback((item: GameGuessData, key: Key) => {
     const value = item[key as keyof GameGuessData];
@@ -57,7 +76,7 @@ const GameBoard = (props: GameCardProps) => {
       case "breeding":
         return <PokemonBreeding item={item} />;
       default:
-        return value as number;
+        return <p>{value as number}</p>;
     }
   }, []);
 
@@ -78,23 +97,38 @@ const GameBoard = (props: GameCardProps) => {
               align="center"
               className="capitalize pixel-border"
             >
-              {column.label}
+              {t(column.label)}
             </TableColumn>
           )}
         </TableHeader>
         <TableBody items={props.items}>
-          {(item: GameGuessData) => (
-            <TableRow
-              key={`${item.index}-${props.items.findIndex((i) => i === item)}`}
-              className="pixel-border"
-            >
-              {(columnKey) => (
+          {(item: GameGuessData) =>
+            isMobile ? (
+              <TableRow key={`${item.index}`}>
                 <TableCell align="center" className="pixel-border">
-                  {renderCell(item, columnKey)}
+                  {renderCell(item, "index")}
                 </TableCell>
-              )}
-            </TableRow>
-          )}
+                <TableCell align="center" className="pixel-border">
+                  <div>
+                    <PokemonSummary item={item} />
+                  </div>
+                </TableCell>
+              </TableRow>
+            ) : (
+              <TableRow
+                key={`${item.index}-${props.items.findIndex(
+                  (i) => i === item
+                )}`}
+                className="pixel-border"
+              >
+                {(columnKey) => (
+                  <TableCell align="center" className="pixel-border">
+                    {renderCell(item, columnKey)}
+                  </TableCell>
+                )}
+              </TableRow>
+            )
+          }
         </TableBody>
       </Table>
     </>

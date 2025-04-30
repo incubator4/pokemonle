@@ -8,6 +8,15 @@ export const en: ResourceLanguage = {
     giveUp: "Give Up",
     choicePokemon: "Choose a Pokemon",
     inputPlaceholder: "Search for a Pokemon",
+
+    pokemon: "Pokemon",
+    pokemon_type: "Type",
+    generation: "Generation",
+    ability: "Ability",
+    stat: "Stat",
+    color: "Color",
+    breeding: "Breeding",
+    summary: "Summary",
   },
   setting: {
     title: "Settings",

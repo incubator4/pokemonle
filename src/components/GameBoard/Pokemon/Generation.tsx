@@ -11,7 +11,7 @@ export const PokemonGeneration = (props: PokemonItemProps) => {
       color={item.gen.value === "equiv" ? "success" : "default"}
       className="pixel-border pokemon-font text-xs"
     >
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-2 ">
         <p className="dark:text-white chip-content">{t(item.gen.identifier)}</p>
         <DistanceIcon {...item.gen} />
       </div>

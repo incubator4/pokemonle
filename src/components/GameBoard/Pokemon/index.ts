@@ -5,3 +5,4 @@ export * from "./Generation";
 export * from "./Stat";
 export * from "./Color";
 export * from "./Breeding";
+export * from "./Summary";
