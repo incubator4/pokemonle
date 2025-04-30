@@ -7,7 +7,7 @@ interface Settings {
   chance: number;
   stats: boolean;
   shape: boolean;
-  eggGroup: boolean;
+  breeding: boolean;
 }
 
 const useSettings = () => {
@@ -20,7 +20,7 @@ const useSettings = () => {
       chance: 10,
       stats: true,
       shape: true,
-      eggGroup: true,
+      breeding: true,
     }
   );
 

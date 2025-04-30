@@ -4,3 +4,4 @@ export * from "./Ability";
 export * from "./Generation";
 export * from "./Stat";
 export * from "./Color";
+export * from "./Breeding";

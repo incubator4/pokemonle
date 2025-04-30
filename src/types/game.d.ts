@@ -8,4 +8,8 @@ interface GameGuessData {
   stat: {
     pow: GameGuessDistanceResult;
   };
+  breeding: {
+    egg_group: Array<GameGuessItemResult<string>>;
+    capture_rate: GameGuessDistanceResult;
+  };
 }

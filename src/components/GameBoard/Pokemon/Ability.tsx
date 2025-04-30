@@ -15,7 +15,7 @@ export const PokemonAbility = (props: PokemonItemProps) => {
             className="flex justify-center items-center pixel-border pokemon-font text-xs"
           >
             <p className="w-16 truncate text-center dark:text-white chip-content">
-              {t(a.key, { ns: "abilities" })}
+              {t(a.key)}
             </p>
           </Chip>
         );

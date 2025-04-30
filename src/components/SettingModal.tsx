@@ -180,13 +180,13 @@ export const SettingModal = () => {
                   </Switch>
                   <Switch
                     size="sm"
-                    isSelected={settings.eggGroup}
+                    isSelected={settings.breeding}
                     className="pokemon-font text-xs"
                     onValueChange={(val) => {
-                      setSettingKey("eggGroup", val);
+                      setSettingKey("breeding", val);
                     }}
                   >
-                    蛋组/捕获率
+                    培育(蛋组/捕获率)
                   </Switch>
                 </div>
                 <div className="w-full pixel-divider my-2" />

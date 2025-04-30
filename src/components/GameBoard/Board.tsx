@@ -6,7 +6,7 @@ import {
   TableRow,
   TableCell,
 } from "@heroui/react";
-import { Key, useCallback } from "react";
+import { Key, useCallback, useMemo } from "react";
 import { columns } from "./column";
 import {
   PokemonInfo,
@@ -15,13 +15,30 @@ import {
   PokemonGeneration,
   PokemonStat,
   PokemonColor,
+  PokemonBreeding,
 } from "./Pokemon";
+import useSettings from "../../hooks/useSettings";
 
 interface GameCardProps {
   items: Array<GameGuessData>;
 }
 
 const GameBoard = (props: GameCardProps) => {
+  const { settings } = useSettings();
+
+  const cols = useMemo(() => {
+    return columns.filter((col) => {
+      // Hide breeding column if breeding is disabled
+      if (col.key === "breeding") {
+        return settings.breeding;
+      }
+      if (col.key === "color") {
+        return settings.shape;
+      }
+      return true;
+    });
+  }, [settings]);
+
   const renderCell = useCallback((item: GameGuessData, key: Key) => {
     const value = item[key as keyof GameGuessData];
     switch (key) {
@@ -37,6 +54,8 @@ const GameBoard = (props: GameCardProps) => {
         return <PokemonColor item={item} />;
       case "stat":
         return <PokemonStat item={item} />;
+      case "breeding":
+        return <PokemonBreeding item={item} />;
       default:
         return value as number;
     }
@@ -52,7 +71,7 @@ const GameBoard = (props: GameCardProps) => {
           td: "text-center",
         }}
       >
-        <TableHeader columns={columns}>
+        <TableHeader columns={cols}>
           {(column) => (
             <TableColumn
               key={column.key}

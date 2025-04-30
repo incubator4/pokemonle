@@ -5,4 +5,5 @@ export const columns = [
   { key: "ability", label: "特性" },
   { key: "stat", label: "种族值" },
   { key: "color", label: "颜色" },
+  { key: "breeding", label: "培育" },
 ];
